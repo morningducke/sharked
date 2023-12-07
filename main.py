@@ -6,6 +6,6 @@ app = FastAPI()
 app.include_router(users.router)
 app.include_router(reports.router)
 
-@app.get("/")
-async def root():
-    return {"message: hello world"}
+# @app.get("/")
+# async def root():
+#     return {"placeholder"}

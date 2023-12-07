@@ -3,12 +3,10 @@ from fastapi import Depends
 from pydantic import BaseModel
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
+
+from config import SECRET_KEY
 from .oauth2 import oauth2_scheme
 from core.schemas.exception_schemas import UnauthorizedException
-
-SECRET_KEY = ""
-with open('secret_key.txt') as f:
-    SECRET_KEY = f.read()
 
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
