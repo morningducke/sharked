@@ -19,10 +19,9 @@ async def generate_report(username: str, website: ChessWebsites, made_by: str):
         
     verdict = await is_user_cheating(games)
     report = ExtendedReport(website=website, suspect_username=username, verdict=verdict, made_by=made_by)
-    db_reports[uuid4()] = report
     return report
 
-def get_users_reports(username: UsernameAnnotated) -> list:
+async def get_users_reports(username: UsernameAnnotated) -> list:
     """get reports made by a user"""
     return [(id, report) for id, report in db_reports.items() if report.made_by == username]
     

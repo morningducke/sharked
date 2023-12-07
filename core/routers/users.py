@@ -50,7 +50,10 @@ async def update_user(username: UsernameAnnotated) -> UserOut:
     return UserOut(username="username")
 
 @router.delete("/{username}") 
-async def delete_user(username: UsernameAnnotated, auth_lvl: Annotated[AuthorizationLevels, Depends(get_authorization_level)], db: Annotated[AsyncIOMotorDatabase, Depends(get_db)]) -> UserOut:
+async def delete_user(username: UsernameAnnotated, 
+                      auth_lvl: Annotated[AuthorizationLevels, Depends(get_authorization_level)], 
+                      db: Annotated[AsyncIOMotorDatabase, Depends(get_db)]) -> UserOut:
+    
     if auth_lvl == AuthorizationLevels.REGULAR:
         raise UnauthorizedException
     return await remove_user(username, db)
