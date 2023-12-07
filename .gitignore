@@ -1,1 +1,3 @@
 core/security/secret_key.txt
+__pycache__/
+*.py[cod]

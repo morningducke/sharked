@@ -6,18 +6,18 @@ from core.models.database import db_reports
 from core.schemas.user_schemas import UsernameAnnotated
 
 
-def is_user_cheating(games) -> bool:
+async def is_user_cheating(games) -> bool:
     return random() > 0.5
 
-def generate_report(username: str, website: ChessWebsites, made_by: str):
+async def generate_report(username: str, website: ChessWebsites, made_by: str):
     """generate an extended report on a user"""
     games = None
     if website == ChessWebsites.LICHESS:
-        games = get_user_games_lichess(username)
+        games = await get_user_games_lichess(username)
     elif website == ChessWebsites.CHESSCOM:
-        games = get_user_games_chesscom(username)
+        games = await get_user_games_chesscom(username)
         
-    verdict = is_user_cheating(games)
+    verdict = await is_user_cheating(games)
     report = ExtendedReport(website=website, suspect_username=username, verdict=verdict, made_by=made_by)
     db_reports[uuid4()] = report
     return report

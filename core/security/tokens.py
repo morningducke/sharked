@@ -5,7 +5,6 @@ from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from .oauth2 import oauth2_scheme
 from core.schemas.exception_schemas import UnauthorizedException
-import os
 
 SECRET_KEY = ""
 with open('secret_key.txt') as f:
@@ -17,7 +16,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60
 class Token(BaseModel):
     access_token: str
     token_type: str
-
 
 class TokenData(BaseModel):
     username: str | None = None
