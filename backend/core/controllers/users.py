@@ -38,7 +38,7 @@ async def register_user(user: UserIn, db: AsyncIOMotorDatabase):
     if await db[USERS_COLLECTION].find_one({"username": user.username}):
         raise UserAreadyExistsException
     
-    db[USERS_COLLECTION].insert_one(dict(UserDB(username=user.username, hashed_password=get_password_hash(user.password), authorization_level=AuthorizationLevels.REGULAR.value)))
+    await db[USERS_COLLECTION].insert_one(dict(UserDB(username=user.username, hashed_password=get_password_hash(user.password), authorization_level=AuthorizationLevels.REGULAR.value)))
     return await db[USERS_COLLECTION].find_one({"username": user.username})
 
 async def authenticate_user(username: str, password: str, db: AsyncIOMotorDatabase):

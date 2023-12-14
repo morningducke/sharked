@@ -2,15 +2,16 @@ from datetime import timedelta
 from fastapi import APIRouter, status, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from typing import Annotated
+from config import API_PREFIX
 from core.controllers.users import get_all_users, get_authorization_level, get_current_active_user, get_user, register_user, authenticate_user, remove_user
-from core.schemas.exception_schemas import UnauthorizedException
-from core.schemas.user_schemas import AuthorizationLevels, BaseUser, UserIn, UserOut, UsernameAnnotated
+from core.schemas.exception_schemas import ForbiddenAccess, UnauthorizedException
+from core.schemas.user_schemas import AuthorizationLevels, UserIn, UserOut, UsernameAnnotated
 from core.security.tokens import ACCESS_TOKEN_EXPIRE_MINUTES, Token, create_access_token, format_token
 from core.models.database import get_db
 from motor.motor_asyncio import AsyncIOMotorDatabase
 
 router = APIRouter(
-    prefix="/users",
+    prefix="".join([API_PREFIX, "/users"]),
     tags=["users"]
 )
 
@@ -55,7 +56,7 @@ async def delete_user(username: UsernameAnnotated,
                       db: Annotated[AsyncIOMotorDatabase, Depends(get_db)]) -> UserOut:
     
     if auth_lvl == AuthorizationLevels.REGULAR:
-        raise UnauthorizedException
+        raise ForbiddenAccess
     return await remove_user(username, db)
 
 

@@ -1,12 +1,13 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends
+from config import API_PREFIX
 from core.controllers.reports import generate_report, get_users_reports
 from core.controllers.users import get_current_active_user
 from core.schemas.report_schemas import BaseReport, ChessWebsites, SuspectUsername
 from core.schemas.user_schemas import BaseUser
 
 router = APIRouter(
-    prefix="/reports",
+    prefix="".join([API_PREFIX, "/reports"]),
     tags=["reports"]
 )
 

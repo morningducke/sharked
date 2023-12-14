@@ -1,10 +1,10 @@
-from enum import Enum
+from enum import IntEnum  
 from fastapi import Path
 from pydantic import BaseModel, Field
 from typing import Annotated
 import config as cf
 
-class AuthorizationLevels(Enum):
+class AuthorizationLevels(IntEnum):
     REGULAR = 0
     ADMIN = 1
 
@@ -19,7 +19,7 @@ class UserIn(BaseUser):
     
 class UserDB(BaseUser):
     hashed_password : str
-    authorization_level : int = AuthorizationLevels.REGULAR
+    authorization_level : AuthorizationLevels = AuthorizationLevels.REGULAR
     reports_history : list[dict] | None = None
 
 
