@@ -1,15 +1,25 @@
-import MyButton from "./components/MyButton"
+// import MyButton from "./components/MyButton"
 import './App.css';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import config from './config'
+import LoginForm from './components/LoginForm';
+import MainPage from './components/MainPage';
 
+export default function App() {
 
-
-function App() {
   return (
-    <div>
-      <h1>Welcome to my app</h1>
-      <MyButton />
-    </div>
+    <>
+      {/* <h1>Users</h1>
+      {users.map(user => (
+        <div key={user.username}>
+          <p> Username: {user.username}</p>
+        </div>
+      ))} */}
+    {/* <LoginForm></LoginForm> */}
+    <MainPage></MainPage>
+    </>
+    
   );
 }
 
-export default App;

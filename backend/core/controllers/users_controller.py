@@ -14,7 +14,6 @@ async def get_user(username: str, db: AsyncIOMotorDatabase) -> UserDB:
     user = await db[USERS_COLLECTION].find_one({"username": username})
     if user is None:
         raise UserNotFound
-    user.pop("_id")
     return UserDB(**user)
 
     
@@ -60,5 +59,4 @@ async def remove_user(username: str, db: AsyncIOMotorDatabase) -> UserOut:
     deleted_user = await db[USERS_COLLECTION].find_one_and_delete({"username": username})
     if deleted_user is None:
         raise UserNotFound
-    deleted_user.pop("_id")
     return deleted_user

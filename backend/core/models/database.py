@@ -7,5 +7,4 @@ async def get_db():
     return db_client[MONGO_DB_NAME]
 
 # mock db
-db = {}
 db_reports = {}

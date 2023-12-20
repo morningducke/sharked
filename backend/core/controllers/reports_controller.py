@@ -1,6 +1,6 @@
 from random import random
 from uuid import uuid4
-from core.controllers.games import get_user_games_chesscom, get_user_games_lichess
+from core.controllers.games_controller import get_user_games_chesscom, get_user_games_lichess
 from core.schemas.report_schemas import ChessWebsites, ExtendedReport
 from core.models.database import db_reports
 from core.schemas.user_schemas import UsernameAnnotated
