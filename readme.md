@@ -1,1 +1,1 @@
-Open online chess cheating detection made with fastapi, mongodb, react and axios.
+Open online chess cheating detection made with fastapi, mongodb, react and axios. WIP.
