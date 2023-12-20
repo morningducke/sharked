@@ -6,5 +6,3 @@ db_client = AsyncIOMotorClient(MONGO_URL)
 async def get_db():
     return db_client[MONGO_DB_NAME]
 
-# mock db
-db_reports = {}

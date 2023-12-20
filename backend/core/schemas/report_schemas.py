@@ -1,10 +1,10 @@
 from datetime import timedelta
-from enum import Enum
+from enum import StrEnum
 from typing import Annotated
 from fastapi import Query
 from pydantic import BaseModel
 
-class ChessWebsites(Enum):
+class ChessWebsites(StrEnum):
     LICHESS = "lichess"
     CHESSCOM = "chesscom"
 

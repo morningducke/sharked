@@ -18,7 +18,7 @@ async def get_user(username: str, db: AsyncIOMotorDatabase) -> UserDB:
 
     
 async def get_all_users(db: AsyncIOMotorDatabase) -> list[UserOut]:
-    """get a list of up to a 100 users from database"""
+    """get a list of users from database"""
     users_cursor = db[USERS_COLLECTION].find({})
     return [user for user in await users_cursor.to_list(None)]
 

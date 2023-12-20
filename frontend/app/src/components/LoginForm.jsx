@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
 import '../css/LoginForm.css'
-import { login } from '../client'
 
 
-export default function LoginForm() {
+
+export default function LoginForm({ onLogin }) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleLogin(e) {
-    e.preventDefault();
-    const isLoginOk = await login(username, password);
-    alert(`${isLoginOk}, ${JSON.stringify(localStorage['token'])}`);
-  }
 
   return (
     <div className="login-form">
-      <h1>Login</h1>
+      <h1>login</h1>
 
-      <form className="form-inline" onSubmit={handleLogin}>
+      <form className="form-inline" onSubmit={(e) => onLogin(e, username, password)}>
         <div className="form-field">
-          <label className="form-field-label">Email</label>
+          <label className="form-field-label">email</label>
           <input
             type="text"
             className="form-control"
@@ -32,7 +27,7 @@ export default function LoginForm() {
         </div>
 
         <div className="form-field">
-          <label className="form-field-label">Password</label>
+          <label className="form-field-label">password</label>
           <input
             type="password"
             className="form-control"
@@ -43,7 +38,7 @@ export default function LoginForm() {
           />
         </div>
 
-        <button type="submit" className="btn">Login</button>
+        <button type="submit" className="btn">login</button>
       </form>
     </div>
   );
